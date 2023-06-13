@@ -98,7 +98,7 @@
                                     <input type="hidden" name="id" value="{{ $merk->id }}">
                                         <div class="modal-body">
                                             @csrf
-                                            @method('PUT')
+                                            @method('PUT') 
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">

@@ -123,26 +123,30 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php 
+                        <?php
                         $no = 1;
                         ?>
                         @if (count($mobil) > 0)
                         @foreach ($mobil as $car)
                         <tr>
-                            <td>{{$no++}}</td>
+                            <td>{{ $no++ }}</td>
                             <td>
-                            <img class="image" src="{{ $car->photo == null? asset('img/avatar.png')  : asset('uploads/' . $car->photo) }}" alt="">    
+                                <img class="image"
+                                    src="{{ $car->photo == null? asset('img/avatar.png') : asset('uploads/' . $car->photo) }}"
+                                    alt="">
                             </td>
                             <td>{{ $car->merk->nama_merk }}</td>
-                            <td>{{$car->nama_mobil}}</td>
-                            <td>{{$car->plat_nomor}}</td>
-                            <td>{{$car->harga_sewa}}</td>
-                            <td>{{$car->keterangan}}</td>
+                            <td>{{ $car->nama_mobil }}</td>
+                            <td>{{ $car->plat_nomor }}</td>
+                            <td>{{ $car->harga_sewa }}</td>
+                            <td>{{ $car->keterangan }}</td>
                             <td class="text-center">
-                                <form action="{{ route('datamobil.destroy', ['id' => $car->id]) }}" method="POST" id="form-delete">
+                                <form action="{{ route('datamobil.destroy', ['id' => $car->id]) }}" method="POST"
+                                    id="form-delete">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="button" class="btn btn-danger btn-small deleteMobil" onclick="deleteConfirmation('form-delete')"><i class="bx bx-trash"></i></button>
+                                    <button type="button" class="btn btn-danger btn-small deleteMobil"
+                                        onclick="deleteConfirmation('form-delete')"><i class="bx bx-trash"></i></button>
                                 </form>
                                 <button type="button" data-bs-toggle="modal" data-bs-target="#modalEdit_{{ $car->id }}"
                                     class="btn btn-info btn-small"><i class="bx bxs-pen"></i></button>
@@ -158,7 +162,8 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
-                                    <form method="POST" action="{{ route('mobil.update',  $car->id) }}" enctype="multipart/form-data">
+                                    <form method="POST" action="{{ route('mobil.update', $car->id) }}"
+                                        enctype="multipart/form-data">
                                         <input type="hidden" name="id" value="{{ $car->id }}">
                                         <div class="modal-body">
                                             @csrf
@@ -170,11 +175,11 @@
                                                         <select name="id_merk" value="{{ $car->id_merk }}"
                                                             class="form-select" aria-label="Default select example">
                                                             <option selected disabled>Pilih merk</option>
-                                                            @foreach($merks as $merk)
+                                                            @foreach ($merks as $merk)
                                                             <option value="{{ $merk->id }}"
-                                                                {{ ( $merk->id == $car->id_merk ) ? 'selected' : '' }}>
+                                                                {{ $merk->id == $car->id_merk ? 'selected' : '' }}>
                                                                 {{ $merk->nama_merk }}
-                                                             </option>
+                                                            </option>
                                                             @endforeach
                                                         </select>
                                                     </div>
